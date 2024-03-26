@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/database');
+const { Columna } = require('./columna');
 
 const Proyectos = sequelize.define('proyectos', {
     id: {
@@ -26,5 +27,15 @@ const Proyectos = sequelize.define('proyectos', {
 
 
 }, { timestamps: false });
+
+Proyectos.hasMany(Columna, {
+    foreignKey: 'idProyectos',
+    targetId: 'id',
+});
+
+Columna.belongsTo(Proyectos,{
+    foreignKey: 'idProyectos',
+    targetId: 'id',
+});
 
 module.exports = { Proyectos }

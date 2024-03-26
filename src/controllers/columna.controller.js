@@ -1,4 +1,6 @@
 const { Columna } = require('../models/columna');
+//const {TablaDB} = require('../models/tablasdb');
+const {Proyectos} = require('../models/proyectos.model');
 
 //controllador paa obtener la lista de Columnaes
 const GetColumnas = async (req, res) => {
@@ -84,10 +86,25 @@ const GetColumnaById = async (req, res) => {
         res.send({ errors: 'Ha sucedido un  error al intentar realizar la Columna.' });
     }
 }
+/*
+const GetTablaByProyectos = async(req,res) =>{
+    try{
+        const{id} = req.params;
+        const trx = await TablaDB.findAll({
+            include:{model: Proyectos},
+            where:{
+                idProyectos:id
+            }
+        })
+        res.json(trx)
+    }catch(error){
+        res.status(403)
+        console.log(error)
+        res.send({ errors: 'Ha sucedido un  error al intentar agregar el municipio.' });
+    }
+}
 
-
-
-
+*/
 
 
 module.exports = { GetColumnas, AddColumna, UpdateColumna, DeleteColumna, GetColumnaById }
